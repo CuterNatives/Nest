@@ -1,50 +1,28 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { LinkIcon, PlusSmIcon, QuestionMarkCircleIcon, QrcodeIcon } from '@heroicons/react/solid'
+import { QrcodeIcon } from '@heroicons/react/solid'
 import QrScan from './QrScan'
-const team = [
-  {
-    name: 'Tom Cook',
-    email: 'tom.cook@example.com',
-    href: '#',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    name: 'Whitney Francis',
-    email: 'whitney.francis@example.com',
-    href: '#',
-    imageUrl:
-      'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    name: 'Leonard Krasner',
-    email: 'leonard.krasner@example.com',
-    href: '#',
-    imageUrl:
-      'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    name: 'Floyd Miles',
-    email: 'floy.dmiles@example.com',
-    href: '#',
-    imageUrl:
-      'https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    name: 'Emily Selman',
-    email: 'emily.selman@example.com',
-    href: '#',
-    imageUrl:
-      'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-]
 
 export default function AddItems(props) {
   const open = props.open
   const setOpen = props.setOpen
   const [qropen,setqropen] = useState(false)
+  const [itemData,setItemsData] = useState({
+    id: false,
+    name: false,
+    description: false,
+    stock: false,
+    price: false,
+    qr: false,
+    image: false,
+  });
+  const getQrdata = (data) => {
+    if (data) {
+    console.log(data)
+      setItemsData({...itemData,qr:data});
+    }
+  }
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -63,7 +41,9 @@ export default function AddItems(props) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-2xl">
-                  <form className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                  <form className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl" onSubmit={(e)=>{
+                      e.preventDefault()
+                  }}>
                     <div className="flex-1">
                       {/* Header */}
                       <div className="bg-gray-50 px-4 py-6 sm:px-6">
@@ -102,6 +82,7 @@ export default function AddItems(props) {
                           <div className="sm:col-span-2">
                             <input
                               type="text"
+                              required
                               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                           </div>
@@ -110,7 +91,6 @@ export default function AddItems(props) {
                         <div className="space-y-1 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:space-y-0 sm:px-6 sm:py-5">
                           <div>
                             <label
-                              htmlFor="project-description"
                               className="block text-sm font-medium text-gray-900 sm:mt-px sm:pt-2"
                             >
                               {' '}
@@ -131,7 +111,7 @@ export default function AddItems(props) {
                 Cover photo
               </label>
               <div className="mt-1 sm:mt-0 sm:col-span-2">
-                <div className="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                {itemData.image ? <img alt="item" src={itemData.image} className="w-full h-auto"/> : <div className="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                   <div className="space-y-1 text-center">
                     <svg
                       className="mx-auto h-12 w-12 text-gray-400"
@@ -153,13 +133,20 @@ export default function AddItems(props) {
                         className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                       >
                         <span>Upload a file</span>
-                        <input type="file" id="file-upload" className="sr-only" />
+                        <input type="file" id="file-upload" className="sr-only" onChange={(e)=>{
+                            const reader = new FileReader();
+                            reader.onload = function (x) {
+                                setItemsData({...itemData, image: x.target.result})
+                              };
+                              reader.readAsDataURL(e.target.files[0]);
+                        }}/>
                       </label>
                       <p className="pl-1">or drag and drop</p>
                     </div>
                     <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                   </div>
-                </div></div>
+                </div>}
+                </div>
                         </div>
 
                         <div className="space-y-1 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:space-y-0 sm:px-6 sm:py-5">
@@ -175,6 +162,7 @@ export default function AddItems(props) {
                           <div className="sm:col-span-2">
                             <input
                               type="number"
+                              required
                               min="0"
                               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
@@ -195,6 +183,7 @@ export default function AddItems(props) {
                             <input
                               type="number"
                               min="0"
+                              required
                               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                           </div>
@@ -214,7 +203,7 @@ export default function AddItems(props) {
                           }}>
                             <QrcodeIcon className="h-10 w-10 text-indigo-800 cursor-pointer"/>
                           </div>
-                          <QrScan open={qropen} setOpen={setqropen}/>
+                          <QrScan open={qropen} setOpen={setqropen} qrdata={getQrdata}/>
                         </div>
 
                       </div>

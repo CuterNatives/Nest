@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon, XIcon } from '@heroicons/react/outline'
 import { QrReader } from 'react-qr-reader';
@@ -8,6 +8,9 @@ export default function QrScan(props) {
   const open = props.open
   const setOpen = props.setOpen
   const [data, setData] = useState('Looking for QR code...');
+  useEffect(()=>{
+    props.qrdata(data)
+  },[data])
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -50,7 +53,6 @@ export default function QrScan(props) {
           if (!!result) {
             setData(result?.text);
           }
-
           if (!!error) {
             console.info(error);
           }
