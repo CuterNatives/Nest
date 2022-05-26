@@ -3,19 +3,21 @@ import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
   BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
+  ArchiveIcon,
+  ClipboardCheckIcon,
+  DocumentReportIcon,
   HomeIcon,
-  InboxIcon,
   MenuAlt2Icon,
-  UsersIcon,
   XIcon,
+  QrcodeIcon,
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
-// 
+// Components
 import Dashboard from './Dashboard'
-
+import Items from './Items'
+import Inventory from './Inventory'
+import Reports from './Reports'
+//
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
@@ -38,9 +40,23 @@ export default function Main(props) {
     items:{
       name: 'Items', 
       href: '/items', 
-      icon: HomeIcon, 
+      icon: ArchiveIcon, 
       current: false,
-      component: Dashboard,
+      component: Items,
+    },
+    inventory:{
+      name: 'Inventory', 
+      href: '/inventory', 
+      icon: ClipboardCheckIcon, 
+      current: false,
+      component: Inventory,
+    },
+    reports:{
+      name: 'Reports', 
+      href: '/reports', 
+      icon: DocumentReportIcon, 
+      current: false,
+      component: Reports,
     },
   });
   const [currentItem, setCurrentItem] = useState(false);
@@ -144,11 +160,12 @@ export default function Main(props) {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
             <div className="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
-              <img
+              {/* <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
                 alt="Workflow"
-              />
+              /> */}
+              <div className='text-white font-bold'>NEST by CuterNatives</div>
             </div>
             <div className="flex-1 flex flex-col overflow-y-auto">
               <nav className="flex-1 px-2 py-4 space-y-1">
@@ -198,7 +215,7 @@ export default function Main(props) {
                     <input
                       id="search-field"
                       className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent sm:text-sm"
-                      placeholder="Search"
+                      placeholder="Search Items"
                       type="search"
                       name="search"
                     />
@@ -206,6 +223,13 @@ export default function Main(props) {
                 </form>
               </div>
               <div className="ml-4 flex items-center md:ml-6">
+              <button
+                  type="button"
+                  className="mr-2 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  <span className="sr-only">Search By QR</span>
+                  <QrcodeIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
                 <button
                   type="button"
                   className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
