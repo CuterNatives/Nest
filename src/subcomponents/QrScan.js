@@ -7,7 +7,7 @@ import { QrReader } from 'react-qr-reader';
 export default function QrScan(props) {
   const open = props.open
   const setOpen = props.setOpen
-  const [data, setData] = useState('Looking for QR code...');
+  const [data, setData] = useState(false);
   useEffect(()=>{
     props.qrdata(data)
   },[data])
@@ -60,7 +60,7 @@ export default function QrScan(props) {
         style={{ width: '100%' }}
         className="bg-gray-200 rounded-md"
       />
-      <p className="text-center mt-3">{data}</p>
+      <p className="text-center mt-3">{data ? data:'Looking for QR code ...'}</p>
               </Dialog.Panel>
             </Transition.Child>
           </div>

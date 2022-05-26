@@ -111,9 +111,12 @@ export default function AddItems(props) {
                 Cover photo
               </label>
               <div className="mt-1 sm:mt-0 sm:col-span-2">
-                {itemData.image ? <img alt="item" src={itemData.image} className="w-full h-auto cursor-not-allowed" onClick={(e)=>{
+                {itemData.image ? <div onClick={(e)=>{
                     setItemsData({...itemData,image:false})
-                }} /> : 
+                }}>
+                    <div className="p-4 bg-red-400 rounded-md text-white w-4 h-4 cursor-pointer text-lg -mb-5 -ml-3 relative z-10 flex items-center justify-center">X</div>
+                    <img alt="item" src={itemData.image} className="w-full h-auto cursor-not-allowed" />
+                </div> : 
                 <div className="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                   <div className="space-y-1 text-center">
                     <svg
@@ -205,7 +208,7 @@ export default function AddItems(props) {
                               setqropen(true)
                           }}>
                             <QrcodeIcon className="h-10 w-10 text-indigo-800 cursor-pointer"/>
-                            QR Data : {itemData.qr ? itemData.qr : ''}
+                             {itemData.qr ? `QR Data : ${itemData.qr}` : ''}
                           </div>
                           <QrScan open={qropen} setOpen={setqropen} qrdata={getQrdata}/>
                         </div>
