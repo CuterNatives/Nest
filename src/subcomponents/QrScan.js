@@ -54,7 +54,7 @@ export default function QrScan(props) {
             setData(result?.text);
           }
           if (!!error) {
-            console.info(error);
+            
           }
         }}
         style={{ width: '100%' }}
