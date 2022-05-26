@@ -29,5 +29,5 @@ The focus should be to develop a platform that allows users to keep track of the
 
 **Client:** ReactJS, TailwindCSS
 
-**Server:** Firebase
+**Server:** Firebasey
 
