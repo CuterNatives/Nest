@@ -14,14 +14,14 @@ export default function Dashboard(){
               <div>
       <h3 className="text-lg leading-6 font-medium text-gray-900">Last 30 days</h3>
 
-      <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 ">
         {stats.map((item) => (
           <div
             key={item.id}
-            className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden"
+            className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden transition duration-150 ease-out hover:ease-in border-pr-100 border-2 hover:border-pr-400"
           >
             <dt>
-              <div className="absolute bg-pr-500 rounded-md p-3">
+              <div className="absolute bg-pr-500 rounded-md p-3 transition duration-150 ease-out hover:ease-in border-pr-100 border-2 hover:border-pr-400">
                 <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
               <p className="ml-16 text-sm font-medium text-gray-500 truncate">{item.name}</p>

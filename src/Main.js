@@ -161,9 +161,9 @@ export default function Main(props) {
         {/* Static sidebar for desktop */}
         <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
           <div className="flex-1 flex flex-col min-h-0 bg-pr-800">
-            <div className="flex items-center h-20 flex-shrink-0 px-4 bg-pr-900 text-center grid justify-items-center">
+            <div className="flex items-center h-20 flex-shrink-0 px-4 bg-pr-900 text-center grid justify-items-center hover:object-scale-down object-contain ">
               <img
-                className="h-12 w-auto justify-center"
+                className="object-contain h-12 w-auto "
                 src="./white.svg"
                 alt="Workflow"
               />
@@ -207,16 +207,16 @@ export default function Main(props) {
             <div className="flex-1 px-4 flex justify-between">
               <div className="flex-1 flex">
                 <form className="w-full flex md:ml-0" action="#" method="GET">
-                  <label htmlFor="search-field" className="sr-only">
+                  <label htmlFor="search-field" className="sr-only ">
                     Search
                   </label>
-                  <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                    <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
+                  <div className="relative w-full text-gray-400 focus-within:text-gray-600 ">
+                    <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none ">
                       <SearchIcon className="h-5 w-5" aria-hidden="true" />
                     </div>
                     <input
                       id="search-field"
-                      className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent sm:text-sm"
+                      className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-pr-400 placeholder-gray-500 focus:outline-none focus:placeholder-pr-900 focus:ring-0 focus:border-transparent sm:text-sm "
                       placeholder="Search Items"
                       type="search"
                       name="search"
@@ -227,14 +227,14 @@ export default function Main(props) {
               <div className="ml-4 flex items-center md:ml-6">
               <button
                   type="button"
-                  className="mr-2 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="mr-2 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-out hover:ease-in border-pr-100 border-2 hover:border-pr-500"
                 >
                   <span className="sr-only">Search By QR</span>
                   <QrcodeIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
                 <button
                   type="button"
-                  className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-out hover:ease-in border-pr-100 border-2 hover:border-pr-500"
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -246,7 +246,7 @@ export default function Main(props) {
                     <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
+                        className="h-8 w-8 rounded-full transition duration-150 ease-out hover:ease-in border-pr-100 border-2 hover:border-pr-500"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt=""
                       />
