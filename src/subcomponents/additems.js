@@ -4,6 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import { QrcodeIcon } from '@heroicons/react/solid'
 import QrScan from './QrScan'
 import nest from '../crud/index'
+import { nanoid } from 'nanoid'
 const db = new nest()
 
 export default function AddItems(props) {
@@ -45,7 +46,19 @@ export default function AddItems(props) {
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-2xl">
                   <form className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl" onSubmit={(e)=>{
                       e.preventDefault();
-                      console.log(itemData)
+                      db.addItem({...itemData,id:nanoid()}).then(()=>{
+                          setItemsData({
+                            id: false,
+                            name: false,
+                            description: false,
+                            stock: false,
+                            price: false,
+                            qr: false,
+                            image: false,
+                          });
+                          setOpen(false)
+                          console.log(2)
+                      })
                   }}>
                     <div className="flex-1">
                       {/* Header */}
@@ -86,6 +99,9 @@ export default function AddItems(props) {
                             <input
                               type="text"
                               required
+                              onChange={(e)=>{
+                                  setItemsData({...itemData,name:e.target.value})
+                              }}
                               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                           </div>
@@ -105,6 +121,9 @@ export default function AddItems(props) {
                               rows={3}
                               className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               defaultValue={''}
+                              onChange={(e)=>{
+                                setItemsData({...itemData,description:e.target.value})
+                            }}
                             />
                           </div>
                         </div>
@@ -173,6 +192,9 @@ export default function AddItems(props) {
                               type="number"
                               required
                               min="0"
+                              onChange={(e)=>{
+                                setItemsData({...itemData,price:e.target.value})
+                            }}
                               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                           </div>
@@ -193,6 +215,9 @@ export default function AddItems(props) {
                               type="number"
                               min="0"
                               required
+                              onChange={(e)=>{
+                                setItemsData({...itemData,stock:e.target.value})
+                            }}
                               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                           </div>

@@ -1,25 +1,19 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import AddItems from './subcomponents/additems'
-const items = [
-  {
-    name: 'Iphone',
-    id: '3774djf234vaadjf',
-    photo: 'https://images.pexels.com/photos/4065899/pexels-photo-4065899.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    price: 100000,
-    stock: 10,
-  },
-]
-
+import nest from './crud/index'
+const db = new nest()
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Items() {
   const checkbox = useRef()
+  const [items,setItems] = useState([])
   const [checked, setChecked] = useState(false)
   const [indeterminate, setIndeterminate] = useState(false)
   const [selecteditems, setSelecteditems] = useState([])
   const [open,setOpen] = useState(false)
+  const [refresh,setRefresh] = useState(Math.random())
   useLayoutEffect(() => {
     const isIndeterminate = selecteditems.length > 0 && selecteditems.length < items.length
     setChecked(selecteditems.length === items.length)
@@ -32,7 +26,11 @@ export default function Items() {
     setChecked(!checked && !indeterminate)
     setIndeterminate(false)
   }
-
+  useEffect(()=>{
+    db.getAllItems().then(res=>{
+      setItems(res)
+    })
+  },[open,refresh])
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-4">
       <div className="sm:flex sm:items-center">
@@ -52,7 +50,7 @@ export default function Items() {
           </button>
         </div>
       </div>
-      <div className="mt-8 flex flex-col">
+      {items.length === 0 ? '':<div className="mt-8 flex flex-col">
         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -61,12 +59,12 @@ export default function Items() {
                   <button
                     type="button"
                     className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
-                  >
-                    Bulk edit
-                  </button>
-                  <button
-                    type="button"
-                    className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+                    onClick={(e)=>{
+                      let ids = selecteditems.map((item)=>item.id);
+                      db.deleteMultiple(ids).then((e)=>{
+                        setRefresh(Math.random())
+                      })
+                    }}
                   >
                     Delete all
                   </button>
@@ -126,7 +124,7 @@ export default function Items() {
                         />
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          <img src={item.photo} alt={item.name} className="h-10 w-10 rounded-full"/>
+                          <img src={item.image} alt={item.name} className="h-10 w-10 rounded-full"/>
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.name}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.id}</td>
@@ -137,9 +135,15 @@ export default function Items() {
                         </a>
                       </td>
                       <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                        <button href="#" className="text-indigo-600 hover:text-indigo-900"
+                        onClick={(e)=>{
+                          db.deleteItem(item.id).then((x)=>{
+                            setRefresh(Math.random())
+                          })
+                        }}
+                        >
                           Delete
-                        </a>
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -148,7 +152,7 @@ export default function Items() {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
       <AddItems open={open} setOpen={setOpen}/>
     </div>
   )
