@@ -161,13 +161,13 @@ export default function Main(props) {
         {/* Static sidebar for desktop */}
         <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
           <div className="flex-1 flex flex-col min-h-0 bg-pr-800">
-            <div className="flex items-center h-16 flex-shrink-0 px-4 bg-pr-900">
-              {/* <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+            <div className="flex items-center h-20 flex-shrink-0 px-4 bg-pr-900 text-center grid justify-items-center">
+              <img
+                className="h-12 w-auto justify-center"
+                src="./white.svg"
                 alt="Workflow"
-              /> */}
-              <div className='tracking-wide text-white font-semibold'>N E S T</div>
+              />
+              {/* <div className='tracking-wide text-white font-semibold'>N E S T</div> */}
             </div>
             <div className="flex-1 flex flex-col overflow-y-auto">
               <nav className="flex-1 px-2 py-4 space-y-1">
