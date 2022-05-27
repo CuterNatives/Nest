@@ -11,8 +11,8 @@ The focus should be to develop a platform that allows users to keep track of the
 
 ## Team CuterNatives 🏁
 
-- [Anirban Saha: Front-End Developer, Motion Graphics, Documentation](https://www.github.com/Anirban-Saha)
-- [Ashhar Ali Ahmed: Static Graphics, Video Editing ](https://github.com/theashhar)
+- [Anirban Saha: Front-End Developer, Motion Graphics-Logo Reveal Animation, Documentation](https://www.github.com/Anirban-Saha)
+- [Ashhar Ali Ahmed: Static Graphics-Logo Design, Video Editing ](https://github.com/theashhar)
 - [Vivek Anand: WebApp Full-Stack Developer](https://github.com/vivek26anand)
 - [Ayush Ghosal: Android Full-Stack Developer](https://github.com/Ayush786113)
 
@@ -21,13 +21,13 @@ The focus should be to develop a platform that allows users to keep track of the
 
 - QR Code based Item Import 
 - Fast Updation
-- Fullscreen mode
-- Cross platform Web-App
+- Inventory Stats
+- Responsive WebApp
 
 
 ## Tech Stack
 
-**Client:** ReactJS, TailwindCSS
+**Client:** ReactJS, TailwindCSS, JavaScript
 
 **Server:** Firebase
 
