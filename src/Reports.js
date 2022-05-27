@@ -1,7 +1,7 @@
 import { DotsVerticalIcon } from '@heroicons/react/solid'
 
 const projects = [
-  { name: 'Stocks Report', initials: 'SR', href: '#', date: '16/05/2022', bgColor: 'bg-pink-600' },
+  { name: 'Stocks Report', initials: 'SR', href: '#', date: '16/05/2022', bgColor: 'bg-pr-600' },
 ]
 
 function classNames(...classes) {
@@ -18,7 +18,7 @@ export default function Example() {
             A list of all the Reports
           </p>
         </div>
-        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none ">
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-md border border-transparent bg-pr-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-pr-700 focus:outline-none focus:ring-2 focus:ring-pr-500 focus:ring-offset-2 sm:w-auto"
@@ -28,9 +28,9 @@ export default function Example() {
         </div>
       </div>
       <h2 className="text-gray-500 text-xs font-medium uppercase tracking-wide mt-3">Resent Reports</h2>
-      <ul role="list" className="mt-3 grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <ul role="list" className="mt-3 grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4 ">
         {projects.map((project) => (
-          <li key={project.name} className="col-span-1 flex shadow-sm rounded-md">
+          <li key={project.name} className="col-span-1 flex  rounded-md transition duration-150 ease-out hover:ease-in shadow-pr hover:shadow-md">
             <div
               className={classNames(
                 project.bgColor,
