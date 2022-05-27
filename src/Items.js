@@ -70,7 +70,7 @@ export default function Items() {
                   </button>
                 </div>
               )}
-              <table className="min-w-full table-fixed divide-y divide-gray-300">
+              <table className="min-w-full table-fixed divide-y divide-pr-300">
                 <thead className="bg-gray-50">
                   <tr>
                     <th scope="col" className="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -82,7 +82,7 @@ export default function Items() {
                         onChange={toggleAll}
                       />
                     </th>
-                    <th scope="col" className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="min-w-[6rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                       Photo
                     </th>
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
