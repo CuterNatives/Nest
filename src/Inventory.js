@@ -1,21 +1,10 @@
-import { useLayoutEffect, useRef, useState } from 'react'
-
-const items = [
-  {
-    name: 'Iphone',
-    id: '3774djf234vaadjf',
-    photo: 'https://images.pexels.com/photos/4065899/pexels-photo-4065899.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    price: 100000,
-    stock: 10,
-  },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+import { useLayoutEffect, useRef, useState, useEffect } from 'react'
+import nest from './crud/index'
+const db = new nest()
 
 export default function Example() {
   const checkbox = useRef()
+  const [items,setItems] = useState([])
   const [checked, setChecked] = useState(false)
   const [indeterminate, setIndeterminate] = useState(false)
   const [selecteditems, setSelecteditems] = useState([])
@@ -32,7 +21,11 @@ export default function Example() {
     setChecked(!checked && !indeterminate)
     setIndeterminate(false)
   }
-
+  useEffect(()=>{
+    db.getAllItems().then(res=>{
+      setItems(res)
+    })
+  },[])
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-4">
       <div className="sm:flex sm:items-center">
@@ -119,7 +112,7 @@ export default function Example() {
                         />
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          <img src={item.photo} alt={item.name} className="h-10 w-10 rounded-full"/>
+                          <img src={item.image} alt={item.name} className="h-10 w-10 rounded-full"/>
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.name}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.id}</td>

@@ -3,9 +3,6 @@ import AddItems from './subcomponents/additems'
 import EditItems from './subcomponents/edititems'
 import nest from './crud/index'
 const db = new nest()
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function Items() {
   const checkbox = useRef()
