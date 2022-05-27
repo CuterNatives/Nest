@@ -12,8 +12,8 @@ The focus should be to develop a platform that allows users to keep track of the
 ## Team CuterNatives 🏁
 
 - [Anirban Saha: Front-End Developer, Motion Graphics, Documentation](https://www.github.com/Anirban-Saha)
-- [Ashhar Ali Ahmed: Static Graphics, Documentation ](https://github.com/theashhar)
-- [Vivek Ahmed: WebApp Full-Stack Developer](https://github.com/vivek26anand)
+- [Ashhar Ali Ahmed: Static Graphics, Video Editing ](https://github.com/theashhar)
+- [Vivek Anand: WebApp Full-Stack Developer](https://github.com/vivek26anand)
 - [Ayush Ghosal: Android Full-Stack Developer](https://github.com/Ayush786113)
 
 

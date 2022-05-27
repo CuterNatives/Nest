@@ -39,7 +39,7 @@ export default function Example() {
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold text-gray-900">Inventory</h1>
           <p className="mt-2 text-sm text-gray-700">
-            A list of all the items stock
+            List of items in your Inventory.
           </p>
         </div>
         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
