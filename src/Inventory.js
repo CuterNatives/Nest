@@ -65,13 +65,13 @@ export default function Example() {
                   </button>
                 </div>
               )}
-              <table className="min-w-full table-fixed divide-y divide-gray-300">
+              <table className="min-w-full table-fixed divide-y divide-pr-300">
                 <thead className="bg-gray-50">
                   <tr>
                     <th scope="col" className="relative w-12 px-6 sm:w-16 sm:px-8">
                       <input
                         type="checkbox"
-                        className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
+                        className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-pr-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
                         ref={checkbox}
                         checked={checked}
                         onChange={toggleAll}
