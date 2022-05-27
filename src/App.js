@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from "./Main";
+window.onerror = function(message, source, lineno, colno, error){
+    
+}
 function App() {
   return (
     <Router>

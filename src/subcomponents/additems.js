@@ -3,6 +3,8 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { QrcodeIcon } from '@heroicons/react/solid'
 import QrScan from './QrScan'
+import nest from '../crud/index'
+const db = new nest()
 
 export default function AddItems(props) {
   const open = props.open
@@ -42,7 +44,8 @@ export default function AddItems(props) {
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-2xl">
                   <form className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl" onSubmit={(e)=>{
-                      e.preventDefault()
+                      e.preventDefault();
+                      console.log(itemData)
                   }}>
                     <div className="flex-1">
                       {/* Header */}
