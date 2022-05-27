@@ -21,7 +21,7 @@ export default function Example() {
         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+            className="inline-flex items-center justify-center rounded-md border border-transparent bg-pr-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-pr-700 focus:outline-none focus:ring-2 focus:ring-pr-500 focus:ring-offset-2 sm:w-auto"
           >
             Generate Report
           </button>
@@ -49,7 +49,7 @@ export default function Example() {
               <div className="flex-shrink-0 pr-2">
                 <button
                   type="button"
-                  className="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pr-500"
                 >
                   <span className="sr-only">Open options</span>
                   <DotsVerticalIcon className="w-5 h-5" aria-hidden="true" />

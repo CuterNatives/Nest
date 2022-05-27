@@ -39,13 +39,13 @@ export default function Example() {
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold text-gray-900">Inventory</h1>
           <p className="mt-2 text-sm text-gray-700">
-            A list of all the items stock
+            List of items in your Inventory.
           </p>
         </div>
         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+            className="inline-flex items-center justify-center rounded-md border border-transparent bg-pr-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-pr-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
           >
             Scan and Update
           </button>
@@ -102,7 +102,7 @@ export default function Example() {
                     <tr key={item.id} className={selecteditems.includes(item) ? 'bg-gray-50' : undefined}>
                       <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                         {selecteditems.includes(item) && (
-                          <div className="absolute inset-y-0 left-0 w-0.5 bg-indigo-600" />
+                          <div className="absolute inset-y-0 left-0 w-0.5 bg-pr-600" />
                         )}
                         <input
                           type="checkbox"

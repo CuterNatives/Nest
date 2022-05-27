@@ -21,7 +21,7 @@ export default function Dashboard(){
             className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden"
           >
             <dt>
-              <div className="absolute bg-indigo-500 rounded-md p-3">
+              <div className="absolute bg-pr-500 rounded-md p-3">
                 <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
               <p className="ml-16 text-sm font-medium text-gray-500 truncate">{item.name}</p>
@@ -45,7 +45,7 @@ export default function Dashboard(){
               </p>
               <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
                 <div className="text-sm">
-                  <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  <a href="#" className="font-medium text-pr-600 hover:text-pr-500">
                     {' '}
                     View all<span className="sr-only"> {item.name} stats</span>
                   </a>
