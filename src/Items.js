@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import AddItems from './subcomponents/additems'
+import EditItems from './subcomponents/edititems'
 import nest from './crud/index'
 const db = new nest()
 function classNames(...classes) {
@@ -13,6 +14,8 @@ export default function Items() {
   const [indeterminate, setIndeterminate] = useState(false)
   const [selecteditems, setSelecteditems] = useState([])
   const [open,setOpen] = useState(false)
+  const [editOpen,setEditOpen] = useState(false)
+  const [editItem,setEditItem] = useState({})
   const [refresh,setRefresh] = useState(Math.random())
   useLayoutEffect(() => {
     const isIndeterminate = selecteditems.length > 0 && selecteditems.length < items.length
@@ -30,7 +33,7 @@ export default function Items() {
     db.getAllItems().then(res=>{
       setItems(res)
     })
-  },[open,refresh])
+  },[open,refresh,editOpen])
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-4">
       <div className="sm:flex sm:items-center">
@@ -130,12 +133,15 @@ export default function Items() {
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.id}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.price}</td>
                       <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                        <button className="text-indigo-600 hover:text-indigo-900" onClick={(e)=>{
+                          setEditItem(item)
+                          setEditOpen(true)
+                        }}>
                           Edit
-                        </a>
+                        </button>
                       </td>
                       <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <button href="#" className="text-indigo-600 hover:text-indigo-900"
+                        <button className="text-indigo-600 hover:text-indigo-900"
                         onClick={(e)=>{
                           db.deleteItem(item.id).then((x)=>{
                             setRefresh(Math.random())
@@ -154,6 +160,7 @@ export default function Items() {
         </div>
       </div>
       <AddItems open={open} setOpen={setOpen}/>
+      <EditItems open={editOpen} setOpen={setEditOpen} item={editItem} />
     </div>
   )
 }
