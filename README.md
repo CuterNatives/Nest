@@ -3,6 +3,8 @@
 Inventory Management Simplified.
 ## Deployment ##
 https://n-e-s-t.web.app/dashboard
+## Video Link ##
+https://www.youtube.com/watch?v=96_TtxWYIzs
 
 ## Hosted Link : https://n-e-s-t.web.app/dashboard
 
