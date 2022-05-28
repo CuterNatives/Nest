@@ -27,6 +27,10 @@ class nest {
         }
         return ids
     }
+    async getItemWithQr(qr){
+        let document = await  db.collection('items').doc({ qr: qr }).get()
+       return document
+    }
 }
 
 export default nest

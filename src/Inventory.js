@@ -1,5 +1,7 @@
 import { useLayoutEffect, useRef, useState, useEffect } from 'react'
 import nest from './crud/index'
+import QrScan from './subcomponents/QrScan'
+import Update from './subcomponents/updatestock'
 const db = new nest()
 
 export default function Example() {
@@ -8,7 +10,18 @@ export default function Example() {
   const [checked, setChecked] = useState(false)
   const [indeterminate, setIndeterminate] = useState(false)
   const [selecteditems, setSelecteditems] = useState([])
-
+  const [qropen,setqropen] = useState(false)
+  const [updateopen,setupdateopen] = useState(false)
+  const [editItem,setEditItem] = useState({})
+  const getQrdata = (data) => {
+    if (data) {
+      db.getItemWithQr(data).then((e)=>{
+        setqropen(false)
+        setEditItem(e)
+        setupdateopen(true)
+      })
+    }
+  }
   useLayoutEffect(() => {
     const isIndeterminate = selecteditems.length > 0 && selecteditems.length < items.length
     setChecked(selecteditems.length === items.length)
@@ -25,9 +38,11 @@ export default function Example() {
     db.getAllItems().then(res=>{
       setItems(res)
     })
-  },[])
+  },[updateopen])
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-4">
+      <QrScan open={qropen} setOpen={setqropen} qrdata={getQrdata}/>
+      <Update open={updateopen} setOpen={setupdateopen} item={editItem} />
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold text-gray-900">Inventory</h1>
@@ -39,6 +54,7 @@ export default function Example() {
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-md border border-transparent bg-pr-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-pr-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+            onClick={()=>{setqropen(true)}}
           >
             Scan and Update
           </button>
