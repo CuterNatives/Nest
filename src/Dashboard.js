@@ -1,14 +1,26 @@
 import { ArrowSmDownIcon, ArrowSmUpIcon } from '@heroicons/react/solid'
 import { DocumentReportIcon, ExclamationIcon, ArchiveIcon, } from '@heroicons/react/outline'
+import nest from './crud/index'
+import { useEffect, useState } from 'react'
+const db = new nest()
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
 export default function Dashboard(){
-    const stats = [
-        { id: 1, name: 'New Items', stat: 323, icon: ArchiveIcon, change: '3%', changeType: 'increase' },
-        { id: 2, name: 'Out Of Stock Items', stat: '20', icon: ExclamationIcon, change: '2%', changeType: 'decrease' },
-        { id: 3, name: 'New Reports', stat: '24.57%', icon: DocumentReportIcon, change: '3.2%', changeType: 'increase' },
-      ]
+    const [stats,setStats] = useState([
+      { id: 1, name: 'New Items', stat: 0, icon: ArchiveIcon, change: '0%', changeType: 'increase' },
+      { id: 2, name: 'Out Of Stock Items', stat: 0, icon: ExclamationIcon, change: '0%', changeType: 'decrease' },
+      { id: 3, name: 'New Reports', stat: 0, icon: DocumentReportIcon, change: '0%', changeType: 'increase' },
+    ])
+    useEffect(()=>{
+      db.getStats().then((s)=>{
+            setStats([
+              { id: 1, name: 'New Items', stat: s.newitems, icon: ArchiveIcon, change: `${s.newitems}%`, changeType: 'increase' },
+              { id: 2, name: 'Out Of Stock Items', stat: s.outofstock, icon: ExclamationIcon, change: `${s.outofstock}%`, changeType: 'decrease' },
+              { id: 3, name: 'New Reports', stat: 0, icon: DocumentReportIcon, change: '0%', changeType: 'increase' },
+            ])
+      })
+    },[])
     return (
         <div className="py-6 px-4">
               <div>

@@ -146,6 +146,9 @@ export default function Example() {
                   ))}
                 </tbody>
               </table>
+              {items.length === 0 ? <div className='p-4 text-center'>
+                No items
+              </div>: ''}
             </div>
           </div>
         </div>

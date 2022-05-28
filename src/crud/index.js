@@ -31,6 +31,19 @@ class nest {
         let document = await  db.collection('items').doc({ qr: qr }).get()
        return document
     }
+    async getStats(){
+        let stats = {}
+        let outofstock = 0
+        let items = await this.getAllItems()
+        for await (const item of items){
+            if(item.stock === 0){
+                outofstock += 1
+            }
+        }
+        stats.newitems = items.length
+        stats.outofstock = outofstock
+        return stats
+    }
 }
 
 export default nest

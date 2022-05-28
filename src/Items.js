@@ -102,6 +102,7 @@ export default function Items() {
                     </th>
                   </tr>
                 </thead>
+               
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {items.map((item) => (
                     <tr key={item.id} className={selecteditems.includes(item) ? 'bg-gray-50' : undefined}>
@@ -152,6 +153,9 @@ export default function Items() {
                   ))}
                 </tbody>
               </table>
+              {items.length === 0 ? <div className='p-4 text-center'>
+                No items
+              </div>: ''}
             </div>
           </div>
         </div>
