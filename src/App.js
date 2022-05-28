@@ -7,6 +7,7 @@ function App() {
   return (
     <Router>
       <Routes>
+      <Route path="/" exact element={<Main page="dashboard"/>} />
         <Route path="/dashboard" exact element={<Main page="dashboard"/>} />
         <Route path="/items" exact element={<Main page="items"/>} />
         <Route path="/inventory" exact element={<Main page="inventory"/>} />
