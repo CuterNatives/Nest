@@ -1,6 +1,8 @@
 # Nest by CuterNatives
 
 Inventory Management Simplified.
+## Deployment ##
+https://n-e-s-t.web.app/dashboard
 
 ## Hosted Link : https://n-e-s-t.web.app/dashboard
 
